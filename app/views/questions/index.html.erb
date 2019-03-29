@@ -1,7 +1,6 @@
 <h2><%= current_user.email %></h2>
 <% @questions.each do |q| %>
-<p><%= q.user_id  %></p>
-<p><%= q.question %></p>
+<a href="/answers/new?target_id=<%= q[:id]%>"><p><%= q[:email]  %> > <%= q[:question] %></p></a>
 <% end %>
 <%= link_to "create question", {:controller => "questions", :action => "new"}, method: :get  %>
 <%= link_to "logout", destroy_user_session_path, method: :delete  %>

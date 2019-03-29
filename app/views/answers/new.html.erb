@@ -1,2 +1,7 @@
-<h1>Answers#new</h1>
-<p>Find me in app/views/answers/new.html.erb</p>
+<h1>質問の回答</h1>
+<h2><%= @question.question %></h2>
+<%= form_for @answer, url: {:controller => "answers", :action => "create"}, method: "Post" do |f|%>
+<p><%= f.text_area :answer%></p>
+<p><%= f.hidden_field :question_id, value: @answer.question_id %></p>
+<p><%= f.submit value: "send" %></p>
+<% end %>

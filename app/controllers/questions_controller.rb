@@ -3,18 +3,19 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = Question.where('user_id = ?', current_user.id)
+                   .map{|q| {id: q.id, question: q.question, email: User.find(q.user_id).email}}
     render 'questions/index'
   end
 
   def create
-    @qp = params['question']
-    Question.create(question: qp['question'], user_id: qp['user_id'])
+    Question.create(question: params['question']['question'],
+                    user_id: params['user_id']['select'])
     render 'questions/create'
   end
 
   def new
-    @user_id_list = @User.select(:id).where('id <> ?', current_user.id)
-                      .map{|id| [User.find(id).email, id]}
+    @user_id_list = User.select(:id).where('id <> ?', current_user.id)
+                      .map{|user| [User.find(user.id).email, user.id]}
     @question = Question.new
     render 'questions/new'
   end
