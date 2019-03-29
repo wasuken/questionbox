@@ -1,2 +1,7 @@
 <h1>Questions#new</h1>
-<p>Find me in app/views/questions/new.html.erb</p>
+<%= form_for @question, url: {:controller => "questions", :action => "create"}, method: "Post" do |f|%>
+<p><%= f.label :question %> : <%= f.text_area :question %></p>
+<%= select :user_id, :name, @user_id_list%>
+<p><%= f.label :user_id %> : <%= f.text_field :user_id %></p>
+<p><%= f.submit value: "send" %></p>
+<% end %>
