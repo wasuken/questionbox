@@ -4,7 +4,8 @@ class AnswersController < ApplicationController
 
   def create
     p params
-    # Answer.create(answer: params[:])
+    Answer.create(answer: params['answer']['answer'],
+                  question_id: params['answer']['question_id'])
   end
 
   def new
