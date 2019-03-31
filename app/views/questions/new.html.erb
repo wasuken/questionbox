@@ -4,3 +4,4 @@
 <%= select :user_id, :select, @user_id_list %>
 <p><%= f.submit value: "send" %></p>
 <% end %>
+<%= link_to "home", {:controller => "questions", :action => "index"}, method: :get  %>

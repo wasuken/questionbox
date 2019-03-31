@@ -1,7 +1,12 @@
 <h1>質問の回答</h1>
 <h2><%= @question.question %></h2>
+<% if @answered.nil? %>
 <%= form_for @answer, url: {:controller => "answers", :action => "create"}, method: "Post" do |f|%>
 <p><%= f.text_area :answer%></p>
 <p><%= f.hidden_field :question_id, value: @answer.question_id %></p>
 <p><%= f.submit value: "send" %></p>
 <% end %>
+<% else %>
+<p><%= @answered_user.email %> > <%= @answered.answer%></p>
+<% end %>
+<%= link_to "home", {:controller => "questions", :action => "index"}, method: :get  %>
