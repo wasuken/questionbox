@@ -1,15 +1,19 @@
 <h2><%= current_user.email %></h2>
+
 <h3>question</h3>
 <% @questions.each do |q| %>
 <a href="/answers/new?target_id=<%= q[:id]%>"><p><%= q[:email]  %> > <%= q[:question] %></p></a>
 <% end %>
+
 <h3>answers to me </h3>
 <% @answers_to.each do |a| %>
 <p><%= a[:email]%> > <%= a[:answer] %></p>
 <% end %>
+
 <h3>answers from me </h3>
 <% @answers_from.each do |a| %>
 <p><%= a[:answer] %> > <%= a[:email]%></p>
 <% end %>
+
 <%= link_to "create question", {:controller => "questions", :action => "new"}, method: :get  %>
 <%= link_to "logout", destroy_user_session_path, method: :delete  %>
